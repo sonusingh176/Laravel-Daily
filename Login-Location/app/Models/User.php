@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Facades\Hash;
 
 class User extends Authenticatable
 {
@@ -20,6 +21,8 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'age',
+        'role',
         'password',
     ];
 
@@ -41,4 +44,16 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+     /**
+     *          -----setPasswordAttribute is Mutator ------
+     * 
+     * This method is automatically called when you set the password attribute on your User model. 
+     * The Hash::make($value) method will hash the password before storing it in the database.
+     */
+    public function setPasswordAttribute($value)
+    {
+
+      $this->attributes['password'] =Hash::make($value);
+    }
 }

@@ -11,10 +11,22 @@
     
     <div class="container-sm">
         <div class="mt-5"  style="text-align:center">
-            <h1>Authentication System</h1>
+            <h1>Welcome {{Auth::user()->name}}</h1>
+
+            {{-- {{Auth::user()}} --}}
+
             <div class="m-auto">
-                <a href="/register" class=" btn btn-primary">Register</a>
-                <a href="/login" class="btn btn-warning">Login</a>
+                <a href="{{route('inner')}}" class=" btn btn-primary">Go to Inner Page</a>
+                <a href="{{route('logout')}}" class="btn btn-warning">Logout</a>
+
+                @if(isset($location))
+                <p>You logged in from:</p>
+                {{-- <p>Latitude: {{ $latitude }}</p>
+                <p>Longitude: {{ $longitude }}</p> --}}
+                <p>Location: {{ $location }}</p>
+            @else
+                <p>Location data is not available.</p>
+            @endif
             </div>
 
         </div>
