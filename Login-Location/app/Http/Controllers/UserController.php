@@ -43,36 +43,37 @@ class UserController extends Controller
     
             // Attempt to authenticate the user
             if (Auth::attempt($credentials)) {
-                if ($latitude !== null && $longitude !== null) {
-                    session(['latitude' => $latitude]);
-                    session(['longitude' => $longitude]);
+
+                // if ($latitude !== null && $longitude !== null) {
+                //     session(['latitude' => $latitude]);
+                //     session(['longitude' => $longitude]);
     
-                    // Convert latitude and longitude to a place name
-                    $client = new Client();
-                    try {
-                        $response = $client->get('https://nominatim.openstreetmap.org/reverse', [
-                            'query' => [
-                                'format' => 'jsonv2',
-                                'lat' => $latitude,
-                                'lon' => $longitude,
-                            ]
-                        ]);
+                //     // Convert latitude and longitude to a place name
+                //     $client = new Client();
+                //     try {
+                //         $response = $client->get('https://nominatim.openstreetmap.org/reverse', [
+                //             'query' => [
+                //                 'format' => 'jsonv2',
+                //                 'lat' => $latitude,
+                //                 'lon' => $longitude,
+                //             ]
+                //         ]);
 
                       
-                        $data = json_decode($response->getBody(), true);
+                //         $data = json_decode($response->getBody(), true);
 
-                        $location = $data['display_name'] ?? 'unknown';
+                //         $location = $data['display_name'] ?? 'unknown';
 
                        
-                        session(['location' => $location]);
+                //         session(['location' => $location]);
 
     
-                        Log::info('User location: ' . $location);
-                    } catch (\Exception $e) {
-                        Log::error('Geocoding API request failed: ' . $e->getMessage());
-                        return back()->withErrors(['location' => 'Unable to determine location.']);
-                    }
-                }
+                //         Log::info('User location: ' . $location);
+                //     } catch (\Exception $e) {
+                //         Log::error('Geocoding API request failed: ' . $e->getMessage());
+                //         return back()->withErrors(['location' => 'Unable to determine location.']);
+                //     }
+                // }
     
                 // Redirect to the dashboard upon successful login
                 return redirect()->route('dashboard');
@@ -93,11 +94,11 @@ class UserController extends Controller
               // Retrieve the location data from the session
             //   $latitude = session('latitude');
             //   $longitude = session('longitude');
-              $location = session('location', 'unknown');
+             // $location = session('location', 'unknown');
   
             //   return dd($location);
-         return view('dashboard',['location'=>  $location]);
-            // return view('dashboard');
+       //  return view('dashboard',['location'=>  $location]);
+             return view('dashboard');
         }else{
             return redirect()->route('login');
         }
