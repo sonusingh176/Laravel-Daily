@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\ProductController;
 use App\Http\Controllers\API\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -25,6 +26,11 @@ Route::middleware('auth:sanctum')->group(function () {
    });
 
    Route::post('user/logout',[UserController::class,'logout']);
+
+   Route::post('saveMainCategory', [ProductController::class, 'saveMainCategory'])->name('saveMainCategory');
+   Route::post('save-super-category',[ProductController::class, 'saveSuperCategory'])->name('saveSuperCategory');
+   Route::get('get-main-category',[ProductController::class, 'getMainCategory'])->name('getMainCategory');
+
 });
 
 Route::post('user/login',[UserController::class,'auth']);

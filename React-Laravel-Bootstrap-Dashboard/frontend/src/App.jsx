@@ -21,7 +21,6 @@ function App() {
       try {
         const response = await axios.get(`${BASE_URL}/user`,getConfig(accessToken))
 
-        console.log(response,"sas");
         // console.log(response.data.user.name);
         setCurrentUser(response.data.user.name);
         

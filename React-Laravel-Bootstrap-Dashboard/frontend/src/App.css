@@ -19,3 +19,7 @@ file-input {
     height: 16px;
     margin-right: 4px;
   }
+
+  input[type="file"] {
+    color: transparent;
+  }
