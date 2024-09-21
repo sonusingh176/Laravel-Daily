@@ -7,9 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class ProductSuperCategory extends Model
 {
-    use HasFactory;
+  
     protected $table='product_super_categories';
     protected $fillable =[
+        'id',
         'main_category_id',
         'sup_cname',
         'sup_cslug_name',
@@ -17,6 +18,11 @@ class ProductSuperCategory extends Model
         'sup_cstatus',
         'product_description',
     ];
+
+    public function product_sub_categories(){
+        return $this->belongsToMany(ProductSubCategory::class, 'super_sub_pivot', 'super_category_id', 'sub_category_id');
+    }
+
     
 }
 

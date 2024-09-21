@@ -27,9 +27,12 @@ Route::middleware('auth:sanctum')->group(function () {
 
    Route::post('user/logout',[UserController::class,'logout']);
 
-   Route::post('saveMainCategory', [ProductController::class, 'saveMainCategory'])->name('saveMainCategory');
-   Route::post('save-super-category',[ProductController::class, 'saveSuperCategory'])->name('saveSuperCategory');
+   Route::post('save-main-category', [ProductController::class, 'saveMainCategory'])->name('saveMainCategory');
    Route::get('get-main-category',[ProductController::class, 'getMainCategory'])->name('getMainCategory');
+   Route::post('save-super-category',[ProductController::class, 'saveSuperCategory'])->name('saveSuperCategory');
+   Route::get('get-super-category',[ProductController::class, 'getSuperCategory'])->name('getSuperCategory');
+   Route::post('save-sub-category',[ProductController::class,'subcategory'])->name('save-sub-category');
+
 
 });
 

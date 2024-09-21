@@ -58,7 +58,7 @@ const MainCategoryForm = () => {
 
 
     try {
-      const response = await axios.post(`${BASE_URL}/saveMainCategory`, formData, getConfig(accessToken,true));
+      const response = await axios.post(`${BASE_URL}/save-main-category`, formData, getConfig(accessToken,true));
       toast.success(response.data.message)
       // console.log('Response:', response.data);
     } catch (error) {

@@ -8,6 +8,7 @@ const MainCategoryForm = () => {
   const { accessToken } = useContext(AuthContext);
   const [maincategories, setMainCategories] = useState([{name: '' ,image:null }]);
   const [fetchMainCategory,setFetchMainCategory] = useState([]);
+  const [selectedCategory, setSelectedCategory]=useState('');
 
   // Function to add new input field
   const addCategoryField  = () => {
@@ -23,6 +24,7 @@ const MainCategoryForm = () => {
   
 
   const handleInputChange = (index, event) => {
+    
     const values = [...maincategories];
 
    if (event.target.name === "name") {
@@ -33,6 +35,11 @@ const MainCategoryForm = () => {
     }
     setMainCategories(values);
   };
+
+    // Handle main category dropdown change
+    const handleSelectChange = (event) => {
+      setSelectedCategory(event.target.value);
+    };
 
   // Function to clear all inputs
   const handleClearInputs = () => {
@@ -48,13 +55,15 @@ const MainCategoryForm = () => {
    
     maincategories.forEach(category => {
 
-      
+      console.log(category);
       formData.append('super_category[]',  category.name );
     
       if (category.image) {
         formData.append('item_images[]', category.image);  // Directly appending the image
       }
     });
+
+    formData.append('main_category_id', selectedCategory);
     
 
 
@@ -98,22 +107,17 @@ const MainCategoryForm = () => {
 
                 <div className="row">
 
-                    <div className="col-12">  
-
-                        <div className="dropdown m-2">
-                            <button className="btn  border dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Select Main Category
-                            </button>
-                            <ul className="dropdown-menu ">
-                                {
-                                  fetchMainCategory.map((item,index)=>(
-                                    <li key={index} id={item.id}><button className="dropdown-item"  onChange={(event) => handleInputChange(index, event)}>{item.main_cname}</button></li>
-                                  ))  
-                                }
-                               
-                               
-                            </ul>
-                        </div>
+                    <div className="col-4">  
+                      <select className="form-select" aria-label="Default select example" value={selectedCategory} onChange={handleSelectChange}>
+                        <option>select Main Category</option>
+                        {
+                          fetchMainCategory.map((item)=>(
+                            <option key={item.id} value={item.id} id={item.id}>{item.main_cname}</option>
+                          ))
+                        }
+                       
+                        
+                      </select>                       
                    </div>
 
                     <div className="col-12">

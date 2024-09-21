@@ -1,6 +1,7 @@
 
 import MainAccordian from '../../../components/MainAccordian'
 import MainCategoryForm from '../../../components/MainCategoryForm'
+import SubCategoryForm from '../../../components/SubCategoryForm'
 import SuperCategoryForm from '../../../components/SuperCategoryForm'
 
 const AddProduct = () => {
@@ -41,7 +42,18 @@ const AddProduct = () => {
         </div>
 
         <div className="tab-pane fade" id="bordered-justified-profile" role="tabpanel" aria-labelledby="profile-tab">
-          asdf
+        <div className="row">
+              <div className="col-4">  <MainAccordian/></div>
+
+              <div className="col-8"> 
+                <div className="row">
+                <div className="col-12"><SubCategoryForm/> </div>
+                <div className="col-12 mt-4"> </div>
+                </div>
+                
+               </div>
+         </div>
+   
         </div>
 
         <div className="tab-pane fade active show" id="bordered-justified-contact" role="tabpanel" aria-labelledby="contact-tab">

@@ -13,7 +13,7 @@ class ProductSuperCategoryRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,8 +23,9 @@ class ProductSuperCategoryRequest extends FormRequest
      */
     public function rules()
     {
-        return [     
-        'sup_cname'=>'required|max:255',
+        return [   
+        'main_category_id'  =>'required',
+        'super_category'=>'required|max:255',
         ];
     }
 }
